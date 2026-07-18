@@ -1,0 +1,58 @@
+import React from "react";
+import type { SelectedCategory } from "../../types/product";
+
+interface CategoryFiltersProps {
+  selectedCategory: SelectedCategory;
+  setSelectedCategory: (
+    category: SelectedCategory
+  ) => void;
+}
+
+const CategoryFilters = ({
+  selectedCategory,
+  setSelectedCategory
+}: CategoryFiltersProps) => {
+
+  const categories: {
+    id: SelectedCategory;
+    label: string;
+  }[] = [
+    { id: 'all', label: 'Все товары' },
+    { id: 'category1', label: 'Лилии' },
+    { id: 'category2', label: 'Пионы' },
+    { id: 'category3', label: 'Клематисы' },
+  ];
+
+  return (
+    <section className="w-full" aria-label="Фильтры категорий">
+      <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+
+        {categories.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => setSelectedCategory(category.id)}
+            className={`
+              px-4 py-1.5
+              text-xs sm:text-sm
+              font-medium
+              uppercase
+              rounded-md
+              transition-all duration-200
+
+              ${
+                selectedCategory === category.id
+                  ? 'bg-white/90 text-text-green-accent shadow'
+                  : 'bg-white/40 text-text-green-accent/70 hover:bg-white/70'
+              }
+            `}
+          >
+            {category.label}
+          </button>
+        ))}
+
+      </div>
+    </section>
+  );
+};
+
+export default CategoryFilters;

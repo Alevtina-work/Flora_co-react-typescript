@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Brand Colors */
+    --primary-green: #16a34a;
+    --primary-green-dark: #166534;
+    --primary-green-darker: #15803d;
+    --primary-green-light: #22c55e;
+    
+    /* Background Colors - Main */
+    --bg-main: #ffffff;
+    --bg-secondary: #fafafa;
+    --bg-tertiary: #f5f5f5;
+    --bg-light-green: #f0fdf4;
+    --bg-green-tint: #d0fae4;
+    --bg-green-accent: #d1e1d7;
+    --bg-overlay: #ffffffe5;
+    --bg-gray: #efefef;
+    --bg-light-gray: #d9d9d9;
+    --bg-translucent: #97979787;
+    
+    /* Text Colors */
+    --text-primary: #000000;
+    --text-secondary: #171717;
+    --text-tertiary: #404040;
+    --text-quaternary: #525252;
+    --text-muted: #737373;
+    --text-light: #a3a3a3;
+    --text-lighter: #b3b3b3;
+    --text-gray: #9ca3af;
+    --text-green: #004e3a;
+    --text-green-medium: #006044;
+    --text-green-light: #00795599;
+    --text-green-accent: #166534;
+    --text-white: #ffffff;
+    --text-red: #dc2626;
+    
+    /* Border Colors */
+    --border-primary: #d4d4d4;
+    --border-secondary: #e5e5e5;
+    --border-light: #f5f5f5;
+    --border-gray: #d9d9d9;
+    --border-green: #d0fae4;
+    --border-green-light: #a4f3cf7f;
+    --border-green-accent: #22c55e;
+    
+    /* Typography - Font Sizes */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 15px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 22px;
+    --font-size-3xl: 24px;
+    --font-size-4xl: 29px;
+    
+    /* Typography - Font Weights */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Typography - Line Heights */
+    --line-height-xs: 16px;
+    --line-height-sm: 18px;
+    --line-height-base: 19px;
+    --line-height-md: 20px;
+    --line-height-lg: 21px;
+    --line-height-xl: 22px;
+    --line-height-2xl: 23px;
+    --line-height-3xl: 24px;
+    --line-height-4xl: 26px;
+    --line-height-5xl: 27px;
+    --line-height-6xl: 29px;
+    --line-height-7xl: 30px;
+    --line-height-8xl: 31px;
+    
+    /* Typography - Letter Spacing */
+    --letter-spacing-wide: 1px;
+    
+    /* Spacing - Margins */
+    --margin-xs: 6px;
+    --margin-sm: 8px;
+    --margin-md: 12px;
+    --margin-lg: 16px;
+    --margin-xl: 20px;
+    --margin-2xl: 24px;
+    --margin-3xl: 30px;
+    --margin-4xl: 32px;
+    --margin-5xl: 38px;
+    --margin-6xl: 52px;
+    --margin-7xl: 82px;
+    --margin-8xl: 140px;
+    --margin-9xl: 166px;
+    --margin-10xl: 170px;
+    --margin-11xl: 318px;
+    --margin-12xl: 414px;
+    --margin-13xl: 686px;
+    
+    /* Spacing - Padding */
+    --padding-xs: 4px;
+    --padding-sm: 6px;
+    --padding-md: 8px;
+    --padding-lg: 10px;
+    --padding-xl: 12px;
+    --padding-2xl: 14px;
+    --padding-3xl: 16px;
+    --padding-4xl: 18px;
+    --padding-5xl: 20px;
+    --padding-6xl: 24px;
+    --padding-7xl: 32px;
+    --padding-8xl: 34px;
+    --padding-9xl: 48px;
+    --padding-10xl: 60px;
+    --padding-11xl: 64px;
+    
+    /* Spacing - Gaps */
+    --gap-xs: 2px;
+    --gap-sm: 4px;
+    --gap-md: 6px;
+    --gap-lg: 8px;
+    --gap-xl: 10px;
+    --gap-2xl: 12px;
+    --gap-3xl: 14px;
+    --gap-4xl: 16px;
+    --gap-5xl: 20px;
+    --gap-6xl: 22px;
+    --gap-7xl: 24px;
+    --gap-8xl: 32px;
+    --gap-9xl: 40px;
+    --gap-10xl: 42px;
+    --gap-11xl: 48px;
+    --gap-12xl: 412px;
+    
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 18px;
+    --radius-3xl: 20px;
+    --radius-4xl: 24px;
+    
+    /* Border Width */
+    --border-width-default: 1px;
+    
+    /* Component-Specific: Header */
+    --header-bg: #ffffff;
+    --header-padding: 6px;
+    
+    /* Component-Specific: Search Bar */
+    --search-bg: #ffffff;
+    --search-border: #d9d9d9;
+    --search-text: #b3b3b3;
+    --search-radius: 20px;
+    
+    /* Component-Specific: Button */
+    --button-primary-bg: #16a34a;
+    --button-primary-text: #ffffff;
+    --button-secondary-bg: #ffffff;
+    --button-secondary-text: #000000;
+    --button-accent-bg: #d1e1d7;
+    --button-accent-text: #166534;
+    --button-disabled-bg: #97979787;
+    --button-radius: 12px;
+    
+    /* Component-Specific: Card */
+    --card-bg: #ffffff;
+    --card-border: #e5e5e5;
+    --card-radius: 12px;
+    
+    /* Component-Specific: Input */
+    --input-bg: #ffffff;
+    --input-border: #d4d4d4;
+    --input-text: #9ca3af;
+    --input-radius: 6px;
+    
+    /* Component-Specific: Radio */
+    --radio-bg: #f0fdf4;
+    --radio-border: #e5e5e5;
+    --radio-border-active: #22c55e;
+    --radio-text: #171717;
+    
+    /* Component-Specific: Footer */
+    --footer-bg: #f0fdf4;
+    --footer-border: #d0fae4;
+    
+    /* Component-Specific: Icon Button */
+    --icon-button-bg: #d0fae4;
+    --icon-button-border: #d0fae4;
+  }
+}
