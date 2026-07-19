@@ -303,29 +303,25 @@ const ProductCard = ({
             }
           }}
           disabled={quantity === 0 && !isInCart}
-          text_font_size="text-md"
-          text_font_family="Outfit"
-          text_font_weight="font-medium"
-          text_line_height="leading-lg"
-          text_text_align="center"
-          text_text_transform="none"
-          text_color="text-text-white"
-          fill_background_color={
-            isInCart
-              ? 'bg-primary-green-dark'
-              : quantity > 0
-                ? 'bg-primary-green'
-                : 'bg-button-disabled-bg'
-          }
-          border_border_radius="rounded-md"
           className={`
-            w-full mt-4
+            w-full
+            mt-4
+            text-md
+            font-medium
+            text-white
+            rounded-md
+            ${
+              isInCart
+                ? 'bg-primary-green-dark'
+                : quantity > 0
+                  ? 'bg-primary-green'
+                  : 'bg-button-disabled-bg'
+            }
             ${
               quantity > 0 || isInCart
                 ? 'hover:bg-primary-green-dark cursor-pointer'
                 : 'cursor-not-allowed opacity-50'
             }
-            transition-all duration-200
           `}
         >
           <div className="flex items-center justify-center gap-2">

@@ -71,18 +71,10 @@ const CustomerInfoSection = ({ customerInfo, onUpdateCustomerInfo }: CustomerInf
             </label>
             <EditText
               placeholder="Мария"
-              value={customerInfo?.firstName}
-              onChange={(e) => handleInputChange('firstName', e?.target?.value)}
-              onBlur={() => {}}
-              onFocus={() => {}}
+              value={customerInfo.firstName}
+              onChange={(e) => handleInputChange('firstName', e.target.value)}
               maxLength={30}
               className="w-full"
-              layout_width="100%"
-              padding="10px 16px"
-              margin="0"
-              position="relative"
-              error=""
-              label=""
             />
           </div>
 
@@ -93,18 +85,10 @@ const CustomerInfoSection = ({ customerInfo, onUpdateCustomerInfo }: CustomerInf
             </label>
             <EditText
               placeholder="Иванова"
-              value={customerInfo?.lastName}
-              onChange={(e) => handleInputChange('lastName', e?.target?.value)}
-              onBlur={() => {}}
-              onFocus={() => {}}
+              value={customerInfo.lastName}
+              onChange={(e) => handleInputChange('lastName', e.target.value)}
               maxLength={30}
               className="w-full"
-              layout_width="100%"
-              padding="10px 16px"
-              margin="0"
-              position="relative"
-              error=""
-              label=""
             />
           </div>
         </div>
@@ -117,18 +101,10 @@ const CustomerInfoSection = ({ customerInfo, onUpdateCustomerInfo }: CustomerInf
           <EditText
             type="email"
             placeholder="maria.ivanova@example.com"
-            value={customerInfo?.email}
-            onChange={(e) => handleInputChange('email', e?.target?.value)}
-            onBlur={() => {}}
-            onFocus={() => {}}
+            value={customerInfo.email}
+            onChange={(e) => handleInputChange('email', e.target.value)}
             maxLength={30}
             className="w-full"
-            layout_width="100%"
-            padding="10px 16px"
-            margin="0"
-            position="relative"
-            error=""
-            label=""
           />
         </div>
 
@@ -140,18 +116,10 @@ const CustomerInfoSection = ({ customerInfo, onUpdateCustomerInfo }: CustomerInf
           <EditText
             type="tel"
             placeholder="+7 (___) ___-__-__"
-            value={customerInfo?.phone}
-            onChange={(e) => handleInputChange('phone', e?.target?.value)}
-            onBlur={() => {}}
-            onFocus={() => {}}
+            value={customerInfo.phone}
+            onChange={(e) => handleInputChange('phone', e.target.value)}
             maxLength={18}
             className="w-full"
-            layout_width="100%"
-            padding="10px 16px"
-            margin="0"
-            position="relative"
-            error=""
-            label=""
           />
         </div>
       </div>

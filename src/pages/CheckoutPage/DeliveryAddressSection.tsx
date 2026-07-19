@@ -13,28 +13,28 @@ const DeliveryAddressSection = ({
   onUpdateDeliveryAddress
 }: DeliveryAddressSectionProps) => {
   const handleChange = (field: keyof DeliveryAddress, value: string) => {
-  let cleanedValue = value;
+    let cleanedValue = value;
 
-  // Только буквы, цифры, пробелы и дефис
-  if (field === 'city' || field === 'street') {
-    cleanedValue = value.replace(/[^а-яА-ЯёЁ\s-]/g, '');
-  }
+    // Только буквы, цифры, пробелы и дефис
+    if (field === 'city' || field === 'street') {
+      cleanedValue = value.replace(/[^а-яА-ЯёЁ\s-]/g, '');
+    }
 
-  // Дом и квартира
-  if (field === 'house' || field === 'apartment') {
-    cleanedValue = value.replace(/[^а-яА-ЯёЁa-zA-Z0-9\s/-]/g, '');
-  }
+    // Дом и квартира
+    if (field === 'house' || field === 'apartment') {
+      cleanedValue = value.replace(/[^а-яА-ЯёЁa-zA-Z0-9\s/-]/g, '');
+    }
 
-  // Индекс — только цифры, максимум 6
-  if (field === 'index') {
-    cleanedValue = value.replace(/\D/g, '').slice(0, 6);
-  }
+    // Индекс — только цифры, максимум 6
+    if (field === 'index') {
+      cleanedValue = value.replace(/\D/g, '').slice(0, 6);
+    }
 
-  onUpdateDeliveryAddress({
-    ...deliveryAddress,
-    [field]: cleanedValue
-  });
-};
+    onUpdateDeliveryAddress({
+      ...deliveryAddress,
+      [field]: cleanedValue
+    });
+  };
 
   return (
     <div className="w-full bg-card-background border border-card-border rounded-lg p-4 sm:p-5 md:p-6">
@@ -55,7 +55,7 @@ const DeliveryAddressSection = ({
           </label>
           <EditText
             placeholder="Санкт-Петербург"
-            value={deliveryAddress?.city}
+            value={deliveryAddress.city}
             onChange={(e) => handleChange('city', e.target.value)}
             className="w-full"
           />
@@ -68,7 +68,7 @@ const DeliveryAddressSection = ({
           </label>
           <EditText
             placeholder="Невский проспект"
-            value={deliveryAddress?.street}
+            value={deliveryAddress.street}
             onChange={(e) => handleChange('street', e.target.value)}
             className="w-full"
           />
@@ -83,7 +83,7 @@ const DeliveryAddressSection = ({
             </label>
             <EditText
               placeholder="15к1"
-              value={deliveryAddress?.house}
+              value={deliveryAddress.house}
               onChange={(e) => handleChange('house', e.target.value)}
               className="w-full"
             />
@@ -95,7 +95,7 @@ const DeliveryAddressSection = ({
             </label>
             <EditText
               placeholder="42"
-              value={deliveryAddress?.apartment}
+              value={deliveryAddress.apartment}
               onChange={(e) => handleChange('apartment', e.target.value)}
               className="w-full"
             />
@@ -110,7 +110,7 @@ const DeliveryAddressSection = ({
           </label>
           <EditText
             placeholder="190000"
-            value={deliveryAddress?.index}
+            value={deliveryAddress.index}
             onChange={(e) => handleChange('index', e.target.value)}
             className="w-full"
           />

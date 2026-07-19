@@ -66,9 +66,19 @@ const OrderSummarySection = ({ orderSummary, onPlaceOrder }: OrderSummarySection
             }}
             disabled={isCartEmpty}
             className={`
-              w-full px-8 py-3
+              w-full
+              px-8
+              py-3
+
+              text-md
+              font-medium
+              font-['Inter']
+              leading-md
+
               shadow-[0px_1px_2px_#0000000c]
-              transition-all duration-200
+
+              transition-all
+              duration-200
 
               ${
                 isCartEmpty
@@ -76,17 +86,6 @@ const OrderSummarySection = ({ orderSummary, onPlaceOrder }: OrderSummarySection
                   : 'bg-button-primary-bg text-button-primary-text hover:opacity-90'
               }
             `}
-            text_font_size="text-md"
-            text_font_family="Inter"
-            text_font_weight="font-medium"
-            text_line_height="leading-md"
-            text_text_transform="none"
-            effect_box_shadow="none"
-            layout_width="w-full"
-            padding="px-8 py-3"
-            position="relative"
-            margin="m-0"
-            layout_gap="gap-0"
             variant="primary"
             size="medium"
           />
