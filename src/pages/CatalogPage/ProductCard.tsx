@@ -6,19 +6,16 @@ import { useFavorites } from '../../context/FavoriteContext';
 
 interface ProductCardProps {
   product: Product;
-  isHighlighted?: boolean;
 }
 
 const ProductCard = ({
   product,
-  isHighlighted,
 }: ProductCardProps) => {
 
   const { toggleFavorite, isFavorite } = useFavorites();
   const isFav = isFavorite(product.id);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
-  // Локальный счетчик ДО добавления в корзину
   const [quantity, setQuantity] = useState(0);
 
   const {
@@ -27,14 +24,12 @@ const ProductCard = ({
     removeFromCart
   } = useCart();
 
-  // Проверяем, есть ли товар в корзине
   const cartItem = cartItems.find(
     item => item.id === product.id
   );
 
   const isInCart = !!cartItem;
 
-  // Уменьшение количества
   const handleQuantityDecrease = () => {
     if (quantity > 0) {
       const newQuantity = quantity - 1;
@@ -51,7 +46,6 @@ const ProductCard = ({
     }
   };
 
-  // Увеличение количества
   const handleQuantityIncrease = () => {
     const newQuantity = quantity + 1;
 
@@ -62,7 +56,6 @@ const ProductCard = ({
     }
   };
 
-  // Добавление в корзину
   const handleAddToCart = () => {
     if (quantity > 0 && !isInCart) {
       addToCart(product, quantity);
@@ -70,15 +63,15 @@ const ProductCard = ({
   };
 
   const categoryLabels = {
-  category1: 'Лилии',
-  category2: 'Пионы',
-  category3: 'Клематисы'
-};
+    category1: 'Лилии',
+    category2: 'Пионы',
+    category3: 'Клематисы'
+  };
 
   return (
-  <article
-    id={`product-${product.id}`}
-    className={`
+    <article
+      id={`product-${product.id}`}
+      className={`
       relative flex flex-col w-full
       bg-card-background
       border
@@ -86,39 +79,28 @@ const ProductCard = ({
       overflow-hidden
       hover:shadow-lg
       transition-all duration-300
-
-      ${
-        isHighlighted
-          ? 'border-green-500 ring-2 ring-green-500 shadow-xl'
-          : 'border-card-border'
-      }
     `}
-  >
-      {/* IMAGE SECTION */}
+    >
       <div className="relative w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] rounded-4xl overflow-hidden">
 
-        {/* ФОН ИЗОБРАЖЕНИЯ */}
         <div
           onClick={() => setIsDetailsOpen(true)}
           className="absolute inset-0 bg-cover bg-center cursor-pointer"
           style={{ backgroundImage: `url(${product.image})` }}
         />
 
-        {/* CATEGORY + HEART */}
         {!isDetailsOpen && (
           <div className="absolute inset-0 flex flex-col justify-between p-3 sm:p-[14px] z-10 pointer-events-none">
 
             <div className="flex flex-col items-start gap-2">
 
-              {/* Category */}
-<button
-  className="pointer-events-auto px-3 py-1 bg-white/90 text-text-green-accent text-xs font-medium uppercase rounded-md shadow"
-  aria-label={`Категория: ${categoryLabels[product.category]}`}
->
-  {categoryLabels[product.category]}
-</button>
+              <button
+                className="pointer-events-auto px-3 py-1 bg-white/90 text-text-green-accent text-xs font-medium uppercase rounded-md shadow"
+                aria-label={`Категория: ${categoryLabels[product.category]}`}
+              >
+                {categoryLabels[product.category]}
+              </button>
 
-              {/* Favorite */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -158,7 +140,6 @@ const ProductCard = ({
           </div>
         )}
 
-        {/* DETAILS OVERLAY */}
         {isDetailsOpen && (
           <div
             className="
@@ -216,10 +197,8 @@ const ProductCard = ({
         )}
       </div>
 
-      {/* CONTENT SECTION */}
       <div className="flex flex-col gap-4 p-4 sm:p-6">
 
-        {/* Title and Price */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-5">
 
           <h2 className="text-xl sm:text-2xl md:text-3xl font-normal leading-5xl text-text-secondary font-['Orelega_One']">
@@ -231,22 +210,18 @@ const ProductCard = ({
           </span>
         </div>
 
-        {/* Description */}
         <p className="text-sm leading-md text-text-muted font-normal font-['Outfit']">
           {product.description}
         </p>
 
-        {/* Quantity Section */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 pt-4 sm:pt-6 border-t border-border-light">
 
           <span className="text-base leading-base uppercase text-text-light font-medium font-['Outfit']">
             Количество
           </span>
 
-          {/* Quantity Controls */}
           <div className="flex items-center gap-2 bg-background-secondary border border-border-secondary rounded-md px-[10px] py-[10px]">
 
-            {/* Minus */}
             <button
               onClick={handleQuantityDecrease}
               disabled={quantity === 0}
@@ -270,14 +245,12 @@ const ProductCard = ({
               />
             </button>
 
-            {/* Quantity */}
             <div className="flex items-center justify-center min-w-[28px]">
               <span className="text-sm leading-sm text-text-secondary font-medium text-center font-['Outfit']">
                 {quantity}
               </span>
             </div>
 
-            {/* Plus */}
             <button
               onClick={handleQuantityIncrease}
               className="w-4 h-4 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 focus:outline-none"
@@ -292,7 +265,6 @@ const ProductCard = ({
           </div>
         </div>
 
-        {/* CART BUTTON */}
         <Button
           onClick={() => {
             if (isInCart) {
@@ -310,17 +282,15 @@ const ProductCard = ({
             font-medium
             text-white
             rounded-md
-            ${
-              isInCart
-                ? 'bg-primary-green-dark'
-                : quantity > 0
-                  ? 'bg-primary-green'
-                  : 'bg-button-disabled-bg'
+            ${isInCart
+              ? 'bg-primary-green-dark'
+              : quantity > 0
+                ? 'bg-primary-green'
+                : 'bg-button-disabled-bg'
             }
-            ${
-              quantity > 0 || isInCart
-                ? 'hover:bg-primary-green-dark cursor-pointer'
-                : 'cursor-not-allowed opacity-50'
+            ${quantity > 0 || isInCart
+              ? 'hover:bg-primary-green-dark cursor-pointer'
+              : 'cursor-not-allowed opacity-50'
             }
           `}
         >

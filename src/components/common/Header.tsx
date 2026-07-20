@@ -70,7 +70,6 @@ const Header = ({
       placeholder="Поиск растений"
       value={searchQuery}
       onChange={setSearchQuery}
-      onSearch={handleSearch}
       className="w-full"
     />
   );
