@@ -1,4 +1,3 @@
-import React from "react";
 import type { SelectedCategory } from "../../types/product";
 
 interface CategoryFiltersProps {
@@ -8,20 +7,20 @@ interface CategoryFiltersProps {
   ) => void;
 }
 
+const categories = [
+  { id: 'all', label: 'Все товары' },
+  { id: 'category1', label: 'Лилии' },
+  { id: 'category2', label: 'Пионы' },
+  { id: 'category3', label: 'Клематисы' },
+] satisfies {
+  id: SelectedCategory;
+  label: string;
+}[];
+
 const CategoryFilters = ({
   selectedCategory,
   setSelectedCategory
 }: CategoryFiltersProps) => {
-
-  const categories: {
-    id: SelectedCategory;
-    label: string;
-  }[] = [
-    { id: 'all', label: 'Все товары' },
-    { id: 'category1', label: 'Лилии' },
-    { id: 'category2', label: 'Пионы' },
-    { id: 'category3', label: 'Клематисы' },
-  ];
 
   return (
     <section className="w-full" aria-label="Фильтры категорий">
@@ -39,10 +38,9 @@ const CategoryFilters = ({
               rounded-md
               transition-all duration-200
 
-              ${
-                selectedCategory === category.id
-                  ? 'bg-white/90 text-text-green-accent shadow'
-                  : 'bg-white/40 text-text-green-accent/70 hover:bg-white/70'
+              ${selectedCategory === category.id
+                ? 'bg-white/90 text-text-green-accent shadow'
+                : 'bg-white/40 text-text-green-accent/70 hover:bg-white/70'
               }
             `}
           >

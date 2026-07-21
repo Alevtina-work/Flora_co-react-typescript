@@ -5,12 +5,10 @@ import Badge from '../common/Badge';
 
 import { useCart } from '../../context/CartContext';
 import { useFavorites } from '../../context/FavoriteContext';
-import { products } from '../../data/catalog';
 
 interface HeaderProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  setSearchedProductId: (productId: number) => void;
 }
 
 const navBaseClass = `
@@ -27,7 +25,6 @@ const navBaseClass = `
 const Header = ({
   searchQuery,
   setSearchQuery,
-  setSearchedProductId,
 }: HeaderProps) => {
   const { totalCount } = useCart();
   const { favorites } = useFavorites();
@@ -38,25 +35,6 @@ const Header = ({
   const isFavoritesActive = pathname === '/favorites';
 
   const favoritesCount = favorites.length;
-
-  const handleSearch = (query: string) => {
-    const foundProduct = products.find((product) =>
-      product.name.toLowerCase().includes(query.toLowerCase())
-    );
-
-    if (!foundProduct) return;
-
-    setSearchedProductId(foundProduct.id);
-
-    setTimeout(() => {
-      document
-        .getElementById(`product-${foundProduct.id}`)
-        ?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-        });
-    }, 100);
-  };
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     `${navBaseClass}

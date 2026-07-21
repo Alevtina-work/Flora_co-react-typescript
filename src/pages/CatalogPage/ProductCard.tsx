@@ -1,8 +1,12 @@
 import { useState } from "react";
 import type { Product } from "../../types/product";
-import Button from '../../components/ui/Button';
 import { useCart } from '../../context/CartContext';
 import { useFavorites } from '../../context/FavoriteContext';
+import FavoriteIcon from '../../components/ui/FavoriteIcon';
+import CategoryBadge from '../../components/ui/CategoryBadge';
+import QuantitySelector from '../../components/ui/QuantitySelector';
+import AddToCartButton from '../../components/ui/AddToCartButton';
+import ProductDetailsModal from '../../components/ui/ProductDetailsModal';
 
 interface ProductCardProps {
   product: Product;
@@ -16,11 +20,10 @@ const ProductCard = ({
   const isFav = isFavorite(product.id);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
-  const [quantity, setQuantity] = useState(0);
-
   const {
     cartItems,
     addToCart,
+    updateQuantity,
     removeFromCart
   } = useCart();
 
@@ -30,42 +33,35 @@ const ProductCard = ({
 
   const isInCart = !!cartItem;
 
+  const quantity = cartItem?.quantity ?? 0;
+
+  const changeQuantity = (newQuantity: number) => {
+    if (newQuantity <= 0) {
+      removeFromCart(product.id);
+      return;
+    }
+
+    if (!isInCart) {
+      addToCart(product, newQuantity);
+      return;
+    }
+
+    updateQuantity(product.id, newQuantity);
+  };
+
   const handleQuantityDecrease = () => {
     if (quantity > 0) {
-      const newQuantity = quantity - 1;
-
-      setQuantity(newQuantity);
-
-      if (isInCart) {
-        if (newQuantity === 0) {
-          removeFromCart(product.id);
-        } else {
-          addToCart(product, newQuantity - cartItem.quantity);
-        }
-      }
+      changeQuantity(quantity - 1);
     }
   };
 
   const handleQuantityIncrease = () => {
-    const newQuantity = quantity + 1;
-
-    setQuantity(newQuantity);
-
-    if (isInCart) {
-      addToCart(product, 1);
-    }
+    changeQuantity(quantity + 1);
   };
 
   const handleAddToCart = () => {
-    if (quantity > 0 && !isInCart) {
-      addToCart(product, quantity);
-    }
-  };
-
-  const categoryLabels = {
-    category1: 'Лилии',
-    category2: 'Пионы',
-    category3: 'Клематисы'
+    if (quantity === 0 || isInCart) return;
+    addToCart(product, quantity);
   };
 
   return (
@@ -94,12 +90,7 @@ const ProductCard = ({
 
             <div className="flex flex-col items-start gap-2">
 
-              <button
-                className="pointer-events-auto px-3 py-1 bg-white/90 text-text-green-accent text-xs font-medium uppercase rounded-md shadow"
-                aria-label={`Категория: ${categoryLabels[product.category]}`}
-              >
-                {categoryLabels[product.category]}
-              </button>
+              <CategoryBadge category={product.category} />
 
               <button
                 onClick={(e) => {
@@ -119,82 +110,18 @@ const ProductCard = ({
                   transition-all duration-200
                 "
               >
-                <svg
-                  className={`
-                    w-5 h-5 transition-colors duration-200
-                    ${isFav
-                      ? 'fill-green-600 stroke-green-600'
-                      : 'fill-none stroke-gray-500'
-                    }
-                  `}
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                    strokeWidth="2"
-                  />
-                </svg>
+                <FavoriteIcon active={isFav} />
               </button>
 
             </div>
           </div>
         )}
 
-        {isDetailsOpen && (
-          <div
-            className="
-              absolute inset-0
-              flex items-center justify-center
-              bg-black/75
-              text-white
-              p-6
-              z-20
-              cursor-pointer
-            "
-            onClick={() => setIsDetailsOpen(false)}
-          >
-            <div
-              className="
-                w-full max-w-[90%]
-                max-h-[90%]
-                overflow-y-auto
-                bg-black/40
-                backdrop-blur-sm
-                rounded-3xl
-                p-6
-                text-left
-              "
-              onClick={(e) => e.stopPropagation()}
-            >
-
-              <h3 className="text-2xl font-bold mb-5">
-                Характеристики
-              </h3>
-
-              <div className="whitespace-pre-line text-sm leading-7 text-white/80">
-                {product.details}
-              </div>
-
-              <button
-                onClick={() => setIsDetailsOpen(false)}
-                className="
-                  mt-6
-                  px-5 py-2.5
-                  bg-white/10
-                  hover:bg-white/20
-                  border border-white/20
-                  backdrop-blur-md
-                  rounded-2xl
-                  text-white
-                  transition-all duration-300
-                "
-              >
-                Закрыть
-              </button>
-
-            </div>
-          </div>
-        )}
+        <ProductDetailsModal
+          isOpen={isDetailsOpen}
+          details={product.details}
+          onClose={() => setIsDetailsOpen(false)}
+        />
       </div>
 
       <div className="flex flex-col gap-4 p-4 sm:p-6">
@@ -220,97 +147,19 @@ const ProductCard = ({
             Количество
           </span>
 
-          <div className="flex items-center gap-2 bg-background-secondary border border-border-secondary rounded-md px-[10px] py-[10px]">
+          <QuantitySelector
+            quantity={quantity}
+            onDecrease={handleQuantityDecrease}
+            onIncrease={handleQuantityIncrease}
+          />
 
-            <button
-              onClick={handleQuantityDecrease}
-              disabled={quantity === 0}
-              className={`
-                w-4 h-4
-                flex items-center justify-center
-                transition-opacity duration-200
-                focus:outline-none
-
-                ${quantity === 0
-                  ? 'opacity-30 cursor-not-allowed'
-                  : 'opacity-100 cursor-pointer hover:opacity-70'
-                }
-              `}
-              aria-label="Уменьшить количество"
-            >
-              <img
-                src="/images/img_plus_minus.svg"
-                alt="Минус"
-                className="w-full h-full"
-              />
-            </button>
-
-            <div className="flex items-center justify-center min-w-[28px]">
-              <span className="text-sm leading-sm text-text-secondary font-medium text-center font-['Outfit']">
-                {quantity}
-              </span>
-            </div>
-
-            <button
-              onClick={handleQuantityIncrease}
-              className="w-4 h-4 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 focus:outline-none"
-              aria-label="Увеличить количество"
-            >
-              <img
-                src="/images/img_plus_minus_gray_600.svg"
-                alt="Плюс"
-                className="w-full h-full"
-              />
-            </button>
-          </div>
         </div>
 
-        <Button
-          onClick={() => {
-            if (isInCart) {
-              removeFromCart(product.id);
-              setQuantity(0);
-            } else {
-              handleAddToCart();
-            }
-          }}
-          disabled={quantity === 0 && !isInCart}
-          className={`
-            w-full
-            mt-4
-            text-md
-            font-medium
-            text-white
-            rounded-md
-            ${isInCart
-              ? 'bg-primary-green-dark'
-              : quantity > 0
-                ? 'bg-primary-green'
-                : 'bg-button-disabled-bg'
-            }
-            ${quantity > 0 || isInCart
-              ? 'hover:bg-primary-green-dark cursor-pointer'
-              : 'cursor-not-allowed opacity-50'
-            }
-          `}
-        >
-          <div className="flex items-center justify-center gap-2">
-
-            <img
-              src="/images/img_plusminus_white_a700.svg"
-              alt=""
-              className="w-[18px] h-[18px]"
-              aria-hidden="true"
-            />
-
-            <span>
-              {isInCart
-                ? 'Удалить из корзины'
-                : 'Добавить в корзину'}
-            </span>
-
-          </div>
-        </Button>
+        {isInCart && (
+          <AddToCartButton
+            onClick={() => removeFromCart(product.id)}
+          />
+        )}
 
       </div>
     </article>
