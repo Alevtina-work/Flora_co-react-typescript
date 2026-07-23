@@ -11,14 +11,14 @@ import OrderSummarySection from './OrderSummarySection';
 import { useCart } from '../../context/CartContext';
 
 import type {
-DeliveryOption,
- DeliveryAddress,
- PaymentOption,
+  DeliveryOption,
+  DeliveryAddress,
+  PaymentOption,
 } from '../../types/customer';
 
 import type {
- CustomerInfo,
- OrderSummary
+  CustomerInfo,
+  OrderSummary
 } from '../../types/order';
 
 interface Message {
@@ -33,35 +33,35 @@ const CheckoutPage = () => {
   const products = cartItems;
 
   const [customerInfo, setCustomerInfo] =
-  useState<CustomerInfo>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: ''
-  });
+    useState<CustomerInfo>({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: ''
+    });
 
   const [selectedDelivery, setSelectedDelivery] =
-useState<DeliveryOption>({
-    id: 'pickup',
-    title: 'Самовывоз',
-    description: 'Бесплатно • Можно забрать сегодня',
-    price: 0
-  });
+    useState<DeliveryOption>({
+      id: 'pickup',
+      title: 'Самовывоз',
+      description: 'Бесплатно • Можно забрать сегодня',
+      price: 0
+    });
 
   const [deliveryAddress, setDeliveryAddress] =
-useState<DeliveryAddress>({
-  city: '',
-  street: '',
-  house: '',
-  apartment: '',
-  index: ''
-});
+    useState<DeliveryAddress>({
+      city: '',
+      street: '',
+      house: '',
+      apartment: '',
+      index: ''
+    });
 
   const [selectedPayment, setSelectedPayment] =
-useState<PaymentOption>({
-    id: 'card',
-    label: 'Картой онлайн'
-  });
+    useState<PaymentOption>({
+      id: 'card',
+      label: 'Картой онлайн'
+    });
 
   const calculateOrderSummary = () => {
     const subtotal = products.reduce(
@@ -116,23 +116,15 @@ useState<PaymentOption>({
       </Helmet>
 
       <div className="flex flex-col min-h-screen bg-background-gray">
-
-        <Header />
-
-        {/* MODAL */}
         {message && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
             <div className="w-full max-w-md bg-white rounded-2xl p-6 shadow-xl relative">
-
-              {/* Close */}
               <button
                 onClick={() => setMessage(null)}
                 className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
               >
                 ✕
               </button>
-
-              {/* Icon */}
               <div className="flex justify-center mb-4">
                 {message.type === 'success' ? (
                   <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-2xl">
@@ -144,22 +136,17 @@ useState<PaymentOption>({
                   </div>
                 )}
               </div>
-
-              {/* Text */}
               <p className="text-center text-sm text-gray-700 font-medium">
                 {message.text}
               </p>
-
-              {/* Button */}
               <div className="mt-5 flex justify-center">
                 <button
                   onClick={() => setMessage(null)}
                   className={`
                     px-5 py-2 rounded-md text-sm font-medium
-                    ${
-                      message.type === 'success'
-                        ? 'bg-green-600 text-white hover:bg-green-700'
-                        : 'bg-red-500 text-white hover:bg-red-600'
+                    ${message.type === 'success'
+                      ? 'bg-green-600 text-white hover:bg-green-700'
+                      : 'bg-red-500 text-white hover:bg-red-600'
                     }
                   `}
                 >
@@ -171,7 +158,6 @@ useState<PaymentOption>({
           </div>
         )}
 
-        {/* MAIN */}
         <main className="flex-1 w-full bg-background-secondary py-6 sm:py-7 md:py-8">
 
           <div className="w-full px-4 sm:px-6 md:px-8">
@@ -197,11 +183,11 @@ useState<PaymentOption>({
                 />
 
                 {selectedDelivery?.id === 'mail' && (
-  <DeliveryAddressSection
-    deliveryAddress={deliveryAddress}
-    onUpdateDeliveryAddress={setDeliveryAddress}
-  />
-)}
+                  <DeliveryAddressSection
+                    deliveryAddress={deliveryAddress}
+                    onUpdateDeliveryAddress={setDeliveryAddress}
+                  />
+                )}
 
                 <PaymentSection
                   selectedPayment={selectedPayment}
@@ -223,8 +209,6 @@ useState<PaymentOption>({
             </div>
           </div>
         </main>
-
-        <Footer />
       </div>
     </>
   );

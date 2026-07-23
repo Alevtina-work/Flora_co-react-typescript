@@ -1,15 +1,16 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import {
+  NavLink,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 import SearchView from '../ui/SearchView';
 import Badge from '../common/Badge';
 
 import { useCart } from '../../context/CartContext';
 import { useFavorites } from '../../context/FavoriteContext';
-
-interface HeaderProps {
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
-}
+import { useSearch } from '../../context/SearchContext';
 
 const navBaseClass = `
   relative
@@ -22,14 +23,19 @@ const navBaseClass = `
   transition-all
 `;
 
-const Header = ({
-  searchQuery,
-  setSearchQuery,
-}: HeaderProps) => {
+const Header = () => {
   const { totalCount } = useCart();
   const { favorites } = useFavorites();
 
   const pathname = useLocation().pathname;
+
+  const shouldFocusSearch = pathname !== "/";
+
+  const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+
+  const { searchQuery, setSearchQuery } = useSearch();
 
   const isCartActive = pathname === '/checkout';
   const isFavoritesActive = pathname === '/favorites';
@@ -43,11 +49,34 @@ const Header = ({
       : 'bg-button-secondary-bg text-button-secondary-text hover:bg-background-tertiary'
     }`;
 
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+
+    const params = new URLSearchParams(searchParams);
+
+    if (value) {
+      params.set("search", value);
+    } else {
+      params.delete("search");
+    }
+
+    if (pathname !== "/") {
+      navigate(`/?${params.toString()}`);
+      return;
+    }
+
+    navigate(
+      `/?${params.toString()}`,
+      { replace: true }
+    );
+  };
+
   const searchField = (
     <SearchView
       placeholder="Поиск растений"
+      autoFocus={shouldFocusSearch}
       value={searchQuery}
-      onChange={setSearchQuery}
+      onChange={handleSearchChange}
       className="w-full"
     />
   );

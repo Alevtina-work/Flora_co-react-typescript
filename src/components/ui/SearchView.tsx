@@ -10,7 +10,7 @@ interface SearchViewProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   value?: string;
   placeholder?: string;
-
+  autoFocus?: boolean;
   onChange?: (value: string) => void;
 }
 
@@ -18,6 +18,7 @@ const SearchView = ({
   placeholder = 'Поиск растений',
   value = '',
   onChange,
+  autoFocus = false,
   className,
   ...props
 }: SearchViewProps) => {
@@ -42,6 +43,7 @@ const SearchView = ({
       )}
     >
       <input
+        autoFocus={autoFocus}
         type="text"
         value={searchValue}
         onChange={handleChange}

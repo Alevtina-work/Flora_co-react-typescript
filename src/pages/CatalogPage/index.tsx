@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import Header from '../../components/common/Header';
-import Footer from '../../components/common/Footer';
 import CategoryFilters from './CategoryFilters';
 import ProductGrid from './ProductGrid';
 import type { SelectedCategory } from "../../types/product";
+import { useSearch } from '../../context/SearchContext';
 
 const pageTitle =
   'Каталог растений | Flora&Co - Лучшие садовые растения для вашего участка';
@@ -15,8 +14,7 @@ const pageDescription =
 const CatalogPage = () => {
   const [selectedCategory, setSelectedCategory] =
     useState<SelectedCategory>('all');
-
-  const [searchQuery, setSearchQuery] = useState('');
+  const { searchQuery } = useSearch();
 
   return (
     <>
@@ -40,10 +38,6 @@ const CatalogPage = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background-gray">
-        <Header
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
 
         <main>
           <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
@@ -59,8 +53,6 @@ const CatalogPage = () => {
             </div>
           </div>
         </main>
-
-        <Footer />
       </div>
     </>
   );

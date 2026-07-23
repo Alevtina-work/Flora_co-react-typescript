@@ -5,7 +5,6 @@ import type { SelectedCategory } from "../../types/product";
 interface ProductGridProps {
   selectedCategory: SelectedCategory;
   searchQuery: string;
-  searchedProductId?: number | null;
 }
 
 const ProductGrid = ({
