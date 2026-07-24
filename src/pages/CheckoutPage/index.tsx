@@ -1,7 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from "react";
 import { Helmet } from 'react-helmet';
-import Header from '../../components/common/Header';
-import Footer from '../../components/common/Footer';
 import ProductsSection from './ProductsSection';
 import CustomerInfoSection from './CustomerInfoSection';
 import DeliverySection from './DeliverySection';
@@ -9,6 +7,7 @@ import DeliveryAddressSection from './DeliveryAddressSection';
 import PaymentSection from './PaymentSection';
 import OrderSummarySection from './OrderSummarySection';
 import { useCart } from '../../context/CartContext';
+import { validateOrder } from "../../utils/formValidation";
 
 import type {
   DeliveryOption,
@@ -18,7 +17,6 @@ import type {
 
 import type {
   CustomerInfo,
-  OrderSummary
 } from '../../types/order';
 
 interface Message {
@@ -29,8 +27,6 @@ interface Message {
 const CheckoutPage = () => {
   const [message, setMessage] = useState<Message | null>(null);
   const { cartItems, updateQuantity, removeFromCart } = useCart();
-
-  const products = cartItems;
 
   const [customerInfo, setCustomerInfo] =
     useState<CustomerInfo>({
@@ -63,51 +59,62 @@ const CheckoutPage = () => {
       label: 'Картой онлайн'
     });
 
-  const calculateOrderSummary = () => {
-    const subtotal = products.reduce(
-      (sum, product) => sum + product?.price * product?.quantity,
-      0
-    );
-    const delivery = selectedDelivery?.price || 0;
+  useEffect(() => {
+    if (
+      selectedDelivery?.id === "mail" &&
+      selectedPayment?.id === "cash"
+    ) {
+      setSelectedPayment({
+        id: "card",
+        label: "Картой онлайн",
+      });
+    }
+  }, [selectedDelivery, selectedPayment]);
 
-    return {
-      subtotal,
-      delivery,
-      total: subtotal + delivery
-    };
+  const subtotal = cartItems.reduce(
+    (sum, product) =>
+      sum + product.price * product.quantity,
+    0
+  );
+
+  const delivery = selectedDelivery.price;
+
+  const orderSummary = {
+    subtotal,
+    delivery,
+    total: subtotal + delivery,
   };
 
-  const handlePlaceOrder = () => {
-    if (
-      !customerInfo?.firstName ||
-      !customerInfo?.lastName ||
-      !customerInfo?.email ||
-      !customerInfo?.phone
-    ) {
-      setMessage({
-        type: 'error',
-        text: 'Пожалуйста, заполните все поля'
-      });
-      return;
-    }
+  const hasEmptyAddress =
+    Object.values(deliveryAddress).some(
+      value => value.trim() === ""
+    );
 
-    if (!products?.length) {
+  const handlePlaceOrder = () => {
+    const validation = validateOrder({
+      customerInfo,
+      deliveryAddress,
+      selectedDelivery,
+      selectedPayment,
+      cartItems,
+    });
+
+    if (!validation.valid) {
       setMessage({
-        type: 'error',
-        text: 'Ваша корзина пуста'
+        type: "error",
+        text: validation.message,
       });
+
       return;
     }
 
     setMessage({
-      type: 'success',
-      text: 'Заказ успешно оформлен! Мы свяжемся с вами в течение 1 рабочего дня.'
+      type: "success",
+      text: "Заказ успешно оформлен! Мы свяжемся с вами в течение 1 рабочего дня.",
     });
 
-    console.log('Order placed');
+    console.log("Order placed");
   };
-
-  const orderSummary = calculateOrderSummary();
 
   return (
     <>
@@ -167,7 +174,7 @@ const CheckoutPage = () => {
               <section className="flex flex-col gap-6 w-full lg:flex-1">
 
                 <ProductsSection
-                  products={products}
+                  products={cartItems}
                   onUpdateQuantity={updateQuantity}
                   onRemoveProduct={removeFromCart}
                 />

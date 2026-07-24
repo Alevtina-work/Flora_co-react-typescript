@@ -1,5 +1,12 @@
 import type { CustomerInfo, DeliveryAddress } from "../../types/customer";
 import EditText from '../../components/ui/EditText';
+import {
+  sanitizeCity,
+  sanitizeStreet,
+  sanitizeHouse,
+  sanitizeApartment,
+  sanitizePostalCode,
+} from '../../utils/formValidation';
 
 interface DeliveryAddressSectionProps {
   deliveryAddress: DeliveryAddress;
@@ -12,34 +19,43 @@ const DeliveryAddressSection = ({
   deliveryAddress,
   onUpdateDeliveryAddress
 }: DeliveryAddressSectionProps) => {
-  const handleChange = (field: keyof DeliveryAddress, value: string) => {
+  const handleChange = (
+    field: keyof DeliveryAddress,
+    value: string
+  ) => {
     let cleanedValue = value;
 
-    // Только буквы, цифры, пробелы и дефис
-    if (field === 'city' || field === 'street') {
-      cleanedValue = value.replace(/[^а-яА-ЯёЁ\s-]/g, '');
-    }
+    switch (field) {
+      case 'city':
+        cleanedValue = sanitizeCity(value);
+        break;
 
-    // Дом и квартира
-    if (field === 'house' || field === 'apartment') {
-      cleanedValue = value.replace(/[^а-яА-ЯёЁa-zA-Z0-9\s/-]/g, '');
-    }
+      case 'street':
+        cleanedValue = sanitizeStreet(value);
+        break;
 
-    // Индекс — только цифры, максимум 6
-    if (field === 'index') {
-      cleanedValue = value.replace(/\D/g, '').slice(0, 6);
+      case 'house':
+        cleanedValue = sanitizeHouse(value);
+        break;
+
+      case 'apartment':
+        cleanedValue = sanitizeApartment(value);
+        break;
+
+      case 'index':
+        cleanedValue = sanitizePostalCode(value);
+        break;
     }
 
     onUpdateDeliveryAddress({
       ...deliveryAddress,
-      [field]: cleanedValue
+      [field]: cleanedValue,
     });
   };
 
   return (
     <div className="w-full bg-card-background border border-card-border rounded-lg p-4 sm:p-5 md:p-6">
 
-      {/* Header */}
       <div className="mb-4">
         <h2 className="text-lg sm:text-xl font-semibold text-text-secondary font-['Outfit']">
           Адрес доставки
@@ -48,7 +64,6 @@ const DeliveryAddressSection = ({
 
       <div className="flex flex-col gap-4">
 
-        {/* City */}
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
             Город
@@ -61,7 +76,6 @@ const DeliveryAddressSection = ({
           />
         </div>
 
-        {/* Street */}
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
             Улица
@@ -74,7 +88,6 @@ const DeliveryAddressSection = ({
           />
         </div>
 
-        {/* House + Apartment */}
         <div className="flex flex-col sm:flex-row gap-3">
 
           <div className="flex flex-col gap-1 w-full">
@@ -103,7 +116,6 @@ const DeliveryAddressSection = ({
 
         </div>
 
-        {/* Index */}
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
             Почтовый индекс

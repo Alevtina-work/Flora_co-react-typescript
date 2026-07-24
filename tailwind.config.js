@@ -11,16 +11,13 @@ module.exports = {
       '2xl': '1536px'
     },
     extend: {
-      /* Color Configuration */
       colors: {
-        // Primary Brand Colors
         primary: {
           green: "var(--primary-green)",
           'green-dark': "var(--primary-green-dark)",
           'green-darker': "var(--primary-green-darker)",
           'green-light': "var(--primary-green-light)"
         },
-        // Background Colors
         background: {
           main: "var(--bg-main)",
           secondary: "var(--bg-secondary)",
@@ -33,7 +30,6 @@ module.exports = {
           'light-gray': "var(--bg-light-gray)",
           translucent: "var(--bg-translucent)"
         },
-        // Text Colors
         text: {
           primary: "var(--text-primary)",
           secondary: "var(--text-secondary)",
@@ -50,7 +46,6 @@ module.exports = {
           white: "var(--text-white)",
           red: "var(--text-red)"
         },
-        // Border Colors
         border: {
           primary: "var(--border-primary)",
           secondary: "var(--border-secondary)",
@@ -60,7 +55,6 @@ module.exports = {
           'green-light': "var(--border-green-light)",
           'green-accent': "var(--border-green-accent)"
         },
-        // Component-Specific Colors
         header: {
           background: "var(--header-bg)"
         },
