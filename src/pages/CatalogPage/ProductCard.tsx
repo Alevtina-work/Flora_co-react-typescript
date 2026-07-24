@@ -67,17 +67,22 @@ const ProductCard = ({
   return (
     <article
       id={`product-${product.id}`}
-      className={`
-      relative flex flex-col w-full
-      bg-card-background
-      border
-      rounded-4xl
-      overflow-hidden
-      hover:shadow-lg
-      transition-all duration-300
-    `}
+      className="
+    relative
+    flex
+    flex-col
+    h-full
+    w-full
+    bg-card-background
+    border
+    rounded-4xl
+    overflow-hidden
+    hover:shadow-lg
+    transition-all duration-300
+  "
     >
-      <div className="relative w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] rounded-4xl overflow-hidden">
+      <div className="relative w-full h-[210px] sm:h-[250px]
+      md:h-[320px] lg:h-[380px] rounded-4xl overflow-hidden">
 
         <div
           onClick={() => setIsDetailsOpen(true)}
@@ -124,42 +129,62 @@ const ProductCard = ({
         />
       </div>
 
-      <div className="flex flex-col gap-4 p-4 sm:p-6">
+      <div className="flex flex-col flex-1 p-4 sm:p-6">
 
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-5">
+        <div className="flex flex-col gap-4">
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-normal leading-5xl text-text-secondary font-['Orelega_One']">
-            {product.name}
-          </h2>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-5">
 
-          <span className="text-lg sm:text-xl md:text-2xl font-normal leading-3xl text-primary-green-darker font-['Orelega_One'] whitespace-nowrap">
-            {product.price} руб
-          </span>
-        </div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-normal leading-5xl text-text-secondary font-['Orelega_One']">
+              {product.name}
+            </h2>
 
-        <p className="text-sm leading-md text-text-muted font-normal font-['Outfit']">
-          {product.description}
-        </p>
+            <span className="text-lg sm:text-xl md:text-2xl font-normal leading-3xl text-primary-green-darker font-['Orelega_One'] whitespace-nowrap">
+              {product.price} руб
+            </span>
 
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 pt-4 sm:pt-6 border-t border-border-light">
+          </div>
 
-          <span className="text-base leading-base uppercase text-text-light font-medium font-['Outfit']">
-            Количество
-          </span>
-
-          <QuantitySelector
-            quantity={quantity}
-            onDecrease={handleQuantityDecrease}
-            onIncrease={handleQuantityIncrease}
-          />
+          <p className="text-sm leading-md text-text-muted font-normal font-['Outfit']">
+            {product.description}
+          </p>
 
         </div>
 
-        {isInCart && (
-          <AddToCartButton
-            onClick={() => removeFromCart(product.id)}
-          />
-        )}
+        <div className="mt-auto flex flex-col gap-4 pt-4 sm:pt-6">
+
+          <div className="flex flex-col sm:flex-row justify-between items-start
+          sm:items-center gap-4 border-t border-border-light pt-4 sm:pt-6">
+
+            <span
+              className="
+                text-base
+                leading-base
+                uppercase
+                text-text-light
+                font-medium
+                font-['Outfit']
+                sm:pt-1
+              "
+            >
+              Количество
+            </span>
+
+            <QuantitySelector
+              quantity={quantity}
+              onDecrease={handleQuantityDecrease}
+              onIncrease={handleQuantityIncrease}
+            />
+
+          </div>
+
+          {isInCart && (
+            <AddToCartButton
+              onClick={() => removeFromCart(product.id)}
+            />
+          )}
+
+        </div>
 
       </div>
     </article>
