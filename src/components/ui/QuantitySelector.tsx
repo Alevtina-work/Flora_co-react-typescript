@@ -16,7 +16,7 @@ const QuantitySelector = ({
                 onClick={onDecrease}
                 disabled={quantity === 0}
                 className={`
-          flex h-4 w-4 items-center justify-center
+          flex h-7 w-7 items-center justify-center
           transition-opacity duration-200
           focus:outline-none
           ${quantity === 0
@@ -33,8 +33,9 @@ const QuantitySelector = ({
                 />
             </button>
 
-            <div className="flex min-w-[28px] items-center justify-center">
-                <span className="text-center font-['Outfit'] text-sm font-medium leading-sm text-text-secondary">
+            <div className="flex min-w-[30px] items-center justify-center">
+                <span className="text-center font-sans text-md
+                font-semibold text-text-secondary">
                     {quantity}
                 </span>
             </div>

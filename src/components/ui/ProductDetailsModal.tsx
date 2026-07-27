@@ -18,7 +18,7 @@ const ProductDetailsModal = ({
         flex items-center justify-center
         bg-black/75
         text-white
-        p-6
+        p-2
         z-20
         cursor-pointer
       "
@@ -41,7 +41,7 @@ const ProductDetailsModal = ({
                     Характеристики
                 </h3>
 
-                <div className="whitespace-pre-line text-sm leading-7 text-white/80">
+                <div className="whitespace-pre-line text-lg leading-7 text-white/80">
                     {details}
                 </div>
 
@@ -49,14 +49,14 @@ const ProductDetailsModal = ({
                     onClick={onClose}
                     className="
             mt-6
-            rounded-2xl
+            rounded-3xl
             border border-white/20
-            bg-white/10
-            px-5 py-2.5
+            bg-white/15
+            px-6 py-2.5
             text-white
             backdrop-blur-md
             transition-all duration-300
-            hover:bg-white/20
+            hover:bg-white/25
           "
                 >
                     Закрыть

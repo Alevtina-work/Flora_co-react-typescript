@@ -133,11 +133,7 @@ module.exports = {
         'wide': 'var(--letter-spacing-wide)'
       },
       fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
-        'newsreader': ['Newsreader', 'serif'],
-        'outfit': ['Outfit', 'sans-serif'],
-        'poppins': ['Poppins', 'sans-serif'],
-        'segoe': ['Segoe UI', 'sans-serif']
+        sans: ['Outfit', 'sans-serif']
       },
       /* Spacing Configuration */
       spacing: {

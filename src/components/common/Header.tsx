@@ -5,21 +5,22 @@ import {
   useSearchParams,
 } from "react-router-dom";
 
-import SearchView from '../ui/SearchView';
-import Badge from '../common/Badge';
+import SearchView from "../ui/SearchView";
+import Badge from "../common/Badge";
 
-import { useCart } from '../../context/CartContext';
-import { useFavorites } from '../../context/FavoriteContext';
-import { useSearch } from '../../context/SearchContext';
+import { useCart } from "../../context/CartContext";
+import { useFavorites } from "../../context/FavoriteContext";
+import { useSearch } from "../../context/SearchContext";
 
 const navBaseClass = `
   relative
-  px-4 sm:px-6 py-2 sm:py-3
-  text-sm sm:text-md
+  px-5 sm:px-7
+  py-3
+  text-base sm:text-xl
   whitespace-nowrap
-  rounded-md
-  font-medium
-  flex items-center gap-2
+  rounded-lg
+  font-semibold
+  flex items-center gap-3
   transition-all
 `;
 
@@ -37,16 +38,16 @@ const Header = () => {
 
   const { searchQuery, setSearchQuery } = useSearch();
 
-  const isCartActive = pathname === '/checkout';
-  const isFavoritesActive = pathname === '/favorites';
+  const isCartActive = pathname === "/checkout";
+  const isFavoritesActive = pathname === "/favorites";
 
   const favoritesCount = favorites.length;
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     `${navBaseClass}
     ${isActive
-      ? 'bg-button-primary-bg text-button-primary-text'
-      : 'bg-button-secondary-bg text-button-secondary-text hover:bg-background-tertiary'
+      ? "bg-button-primary-bg text-button-primary-text"
+      : "bg-button-secondary-bg text-button-secondary-text hover:bg-background-tertiary"
     }`;
 
   const handleSearchChange = (value: string) => {
@@ -65,10 +66,7 @@ const Header = () => {
       return;
     }
 
-    navigate(
-      `/?${params.toString()}`,
-      { replace: true }
-    );
+    navigate(`/?${params.toString()}`, { replace: true });
   };
 
   const searchField = (
@@ -82,31 +80,29 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border-secondary bg-header-background py-2">
-      <div className="mx-auto w-full max-w-[1134px] px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full border-b border-border-secondary bg-header-background py-3">
+      <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-10">
 
-        <div className="flex items-center justify-between gap-6">
+        <div className="flex items-center gap-8">
 
-          <div className="flex flex-1 items-center gap-6">
+          <NavLink
+            to="/"
+            className="flex-shrink-0 flex items-center transition-opacity duration-200 hover:opacity-80"
+          >
+            <img
+              src="/images/img_logo.png"
+              alt="Flora&Co"
+              className="h-10 w-auto object-contain"
+            />
+          </NavLink>
 
-            <NavLink
-              to="/"
-              className="flex items-center transition-opacity duration-200 hover:opacity-80"
-            >
-              <img
-                src="/images/img_logo.png"
-                alt="Flora&Co"
-                className="h-7 w-auto object-contain sm:h-8"
-              />
-            </NavLink>
-
-            <div className="hidden w-full max-w-[400px] md:block">
+          <div className="hidden md:flex flex-1">
+            <div className="w-full max-w-[520px]">
               {searchField}
             </div>
-
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4">
+          <nav className="ml-auto flex items-center gap-4">
 
             <NavLink to="/" className={navClass}>
               <span>Каталог</span>
@@ -114,7 +110,7 @@ const Header = () => {
 
             <NavLink to="/favorites" className={navClass}>
               <svg
-                className="h-4 w-4"
+                className="h-5 w-5"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -137,7 +133,7 @@ const Header = () => {
 
             <NavLink to="/checkout" className={navClass}>
               <svg
-                className="h-4 w-4"
+                className="h-5 w-5"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -161,11 +157,11 @@ const Header = () => {
               )}
             </NavLink>
 
-          </div>
+          </nav>
 
         </div>
 
-        <div className="mt-3 md:hidden">
+        <div className="mt-4 md:hidden">
           {searchField}
         </div>
 

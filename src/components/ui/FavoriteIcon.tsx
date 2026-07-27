@@ -5,7 +5,7 @@ interface FavoriteIconProps {
 const FavoriteIcon = ({ active }: FavoriteIconProps) => (
     <svg
         className={`
-      h-5 w-5 transition-colors duration-200
+      h-6 w-6 transition-colors duration-200
       ${active
                 ? 'fill-green-600 stroke-green-600'
                 : 'fill-none stroke-gray-500'

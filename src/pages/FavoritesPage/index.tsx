@@ -18,8 +18,10 @@ const FavoritesPage = () => {
 
           {favorites.length === 0 ? (
             <div className="text-center text-gray-500">
-              <h2 className="text-xl font-semibold mb-2">Избранное пусто</h2>
-              <p>Добавьте товары из каталога ❤️</p>
+              <h2 className="text-3xl font-semibold mb-2">Избранное пусто</h2>
+              <p className="mt-3 text-xl text-text-muted font-medium font-sans">
+                Добавьте товары из каталога ❤️
+              </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">

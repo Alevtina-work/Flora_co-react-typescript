@@ -57,15 +57,15 @@ const DeliveryAddressSection = ({
     <div className="w-full bg-card-background border border-card-border rounded-lg p-4 sm:p-5 md:p-6">
 
       <div className="mb-4">
-        <h2 className="text-lg sm:text-xl font-semibold text-text-secondary font-['Outfit']">
+        <h2 className="text-lg sm:text-2xl font-semibold text-text-secondary font-sans">
           Адрес доставки
         </h2>
       </div>
 
       <div className="flex flex-col gap-4">
 
-        <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
+        <div className="flex flex-col gap-2">
+          <label className="text-lg font-medium text-text-tertiary font-sans leading-sm">
             Город
           </label>
           <EditText
@@ -76,8 +76,8 @@ const DeliveryAddressSection = ({
           />
         </div>
 
-        <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
+        <div className="flex flex-col gap-2">
+          <label className="text-lg font-medium text-text-tertiary font-sans leading-sm">
             Улица
           </label>
           <EditText
@@ -90,8 +90,8 @@ const DeliveryAddressSection = ({
 
         <div className="flex flex-col sm:flex-row gap-3">
 
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
+          <div className="flex flex-col gap-2 w-full">
+            <label className="text-lg font-medium text-text-tertiary font-sans leading-sm">
               Дом
             </label>
             <EditText
@@ -102,8 +102,8 @@ const DeliveryAddressSection = ({
             />
           </div>
 
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
+          <div className="flex flex-col gap-2 w-full">
+            <label className="text-lg font-medium text-text-tertiary font-sans leading-sm">
               Квартира / офис
             </label>
             <EditText
@@ -116,8 +116,8 @@ const DeliveryAddressSection = ({
 
         </div>
 
-        <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
+        <div className="flex flex-col gap-2">
+          <label className="text-lg font-medium text-text-tertiary font-sans leading-sm">
             Почтовый индекс
           </label>
           <EditText

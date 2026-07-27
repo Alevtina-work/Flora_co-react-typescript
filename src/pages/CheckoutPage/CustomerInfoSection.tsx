@@ -40,14 +40,14 @@ const CustomerInfoSection = ({ customerInfo, onUpdateCustomerInfo }: CustomerInf
   return (
     <div className="w-full bg-card-background border border-card-border rounded-lg p-4 sm:p-5 md:p-6">
       <div className="flex justify-start items-center w-full mb-4 md:mb-4">
-        <h2 className="text-lg sm:text-xl font-semibold text-text-secondary font-['Outfit'] leading-4xl">
+        <h2 className="text-lg sm:text-2xl font-semibold text-text-secondary font-sans leading-4xl">
           Покупатель
         </h2>
       </div>
       <div className="flex flex-col gap-4 md:gap-4 w-full">
         <div className="flex flex-col md:flex-row gap-4 md:gap-4 w-full">
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
+          <div className="flex flex-col gap-2 w-full">
+            <label className="text-lg font-medium text-text-tertiary font-sans leading-sm">
               Имя
             </label>
             <EditText
@@ -59,8 +59,8 @@ const CustomerInfoSection = ({ customerInfo, onUpdateCustomerInfo }: CustomerInf
             />
           </div>
 
-          <div className="flex flex-col gap-1 w-full">
-            <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
+          <div className="flex flex-col gap-2 w-full">
+            <label className="text-lg font-medium text-text-tertiary font-sans leading-sm">
               Фамилия
             </label>
             <EditText
@@ -73,8 +73,8 @@ const CustomerInfoSection = ({ customerInfo, onUpdateCustomerInfo }: CustomerInf
           </div>
         </div>
 
-        <div className="flex flex-col gap-1 w-full">
-          <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
+        <div className="flex flex-col gap-2 w-full">
+          <label className="text-lg font-medium text-text-tertiary font-sans leading-sm">
             Электронная почта
           </label>
           <EditText
@@ -87,8 +87,8 @@ const CustomerInfoSection = ({ customerInfo, onUpdateCustomerInfo }: CustomerInf
           />
         </div>
 
-        <div className="flex flex-col gap-1 w-full">
-          <label className="text-sm font-medium text-text-tertiary font-['Outfit'] leading-sm">
+        <div className="flex flex-col gap-2 w-full">
+          <label className="text-lg font-medium text-text-tertiary font-sans leading-sm">
             Телефон
           </label>
           <EditText

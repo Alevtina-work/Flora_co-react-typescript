@@ -13,7 +13,7 @@ const AddToCartButton = ({
             className="
                 w-full
                 mt-4
-                text-md
+                text-lg
                 font-medium
                 text-white
                 rounded-md

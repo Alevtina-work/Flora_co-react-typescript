@@ -48,16 +48,40 @@ const SearchView = ({
         value={searchValue}
         onChange={handleChange}
         placeholder={placeholder}
-        className="w-full rounded-3xl border border-search-border bg-search-background px-4 py-2 pr-12 text-md font-normal leading-md text-search-text transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-green"
+        className="
+    w-full
+    rounded-3xl
+    border border-search-border
+    bg-search-background
+
+    px-5
+    py-3
+    pr-14
+
+    text-lg
+    font-normal
+    leading-7
+
+    text-text-secondary
+    placeholder:text-search-text
+
+    transition-all
+    duration-200
+
+    focus:border-transparent
+    focus:outline-none
+    focus:ring-2
+    focus:ring-primary-green
+  "
         {...props}
       />
 
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+      <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none">
         <img
           src="/images/img_search.svg"
           alt=""
           aria-hidden="true"
-          className="w-4 h-4"
+          className="w-5 h-5"
         />
       </div>
     </div>

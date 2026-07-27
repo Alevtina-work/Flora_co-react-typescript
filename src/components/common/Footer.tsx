@@ -9,7 +9,7 @@ const Footer = () => {
   ];
 
   const sectionTitleClass =
-    "text-lg leading-2xl text-text-green font-normal font-['Outfit']";
+    "text-lg leading-2xl text-text-green font-normal font-sans";
 
   const contactButtonClass =
     'flex h-[34px] w-[34px] min-h-[34px] min-w-[34px] items-center justify-center rounded-xl bg-icon-button-bg transition-colors duration-200 hover:bg-primary-green-light focus:outline-none focus:ring-2 focus:ring-primary-green';
@@ -18,7 +18,7 @@ const Footer = () => {
     'flex h-[46px] w-[46px] items-center justify-center rounded-lg border border-icon-button-border bg-background-main p-3 transition-all duration-200 hover:border-primary-green hover:bg-primary-green-light focus:outline-none focus:ring-2 focus:ring-primary-green';
 
   const contactLinkClass =
-    "text-sm leading-sm font-normal font-['Outfit'] text-text-green-medium transition-colors duration-200 hover:text-primary-green";
+    "text-sm leading-sm font-normal font-sans text-text-green-medium transition-colors duration-200 hover:text-primary-green";
 
   const footerTextClass =
     "text-xs leading-xs tracking-[1px] uppercase text-text-green-light font-normal font-['Segoe_UI_Symbol']";

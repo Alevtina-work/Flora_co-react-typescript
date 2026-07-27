@@ -11,7 +11,7 @@ const categoryLabels = {
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
     return (
         <button
-            className="pointer-events-auto px-3 py-1 bg-white/90 text-text-green-accent text-xs font-medium uppercase rounded-md shadow"
+            className="pointer-events-auto px-3 py-1 bg-white/90 text-text-green-accent text-base font-medium uppercase rounded-md shadow"
             aria-label={`Категория: ${categoryLabels[category]}`}
         >
             {categoryLabels[category]}

@@ -31,11 +31,11 @@ const CategoryFilters = ({
             key={category.id}
             onClick={() => setSelectedCategory(category.id)}
             className={`
-              px-4 py-1.5
-              text-xs sm:text-sm
-              font-medium
+              px-7 py-3
+              text-base sm:text-lg
+              font-semibold
               uppercase
-              rounded-md
+              rounded-lg
               transition-all duration-200
 
               ${selectedCategory === category.id

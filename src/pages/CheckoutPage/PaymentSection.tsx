@@ -18,10 +18,10 @@ const PaymentSection = ({
   ];
 
   return (
-    <div className="w-full bg-card-background border border-card-border rounded-lg p-4 sm:p-5 md:p-6">
+    <div className="w-full bg-card-background border border-card-border rounded-lg p-5 sm:p-5 md:p-6">
 
       <div className="flex justify-start items-center w-full mb-4">
-        <h2 className="text-lg sm:text-xl font-semibold text-text-secondary font-['Outfit']">
+        <h2 className="text-lg sm:text-2xl font-semibold text-text-secondary font-sans">
           Способ оплаты
         </h2>
       </div>
@@ -45,7 +45,7 @@ const PaymentSection = ({
                 onSelectPayment(option);
               }}
               className={`
-                flex items-center gap-3 w-full text-left rounded-lg p-4
+                flex items-center gap-3 w-full text-left rounded-lg p-5
                 transition-all duration-200 focus:outline-none
 
                 ${isActive
@@ -74,12 +74,12 @@ const PaymentSection = ({
               </div>
 
               <div className="flex flex-col">
-                <span className="text-sm font-medium text-text-secondary font-['Outfit']">
+                <span className="text-lg font-medium text-text-secondary font-sans">
                   {option.label}
                 </span>
 
                 {isCashOption && (
-                  <span className="text-xs text-text-muted mt-1">
+                  <span className="text-lg text-text-muted mt-1">
                     Только для самовывоза
                   </span>
                 )}

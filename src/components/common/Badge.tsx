@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface BadgeProps {
     count: number;
     active?: boolean;
@@ -12,13 +10,14 @@ const Badge = ({
     return (
         <span
             className={`
-        absolute -top-2 -right-2
-        min-w-[18px] h-[18px]
-        px-1
+        absolute -top-3 -right-3
+        min-w-[24px] h-[24px]
+        px-2
         flex items-center justify-center
-        text-[10px] font-bold
+        text-sm font-semibold
         rounded-full
         pointer-events-none
+        leading-none
 
         ${active
                     ? 'bg-white text-green-600'

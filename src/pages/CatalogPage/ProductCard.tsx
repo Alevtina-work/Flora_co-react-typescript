@@ -105,7 +105,7 @@ const ProductCard = ({
                 className="
                   pointer-events-auto
                   relative z-30
-                  w-10 h-10
+                  w-12 h-12
                   flex items-center justify-center
                   bg-white/90
                   border border-gray-200
@@ -135,17 +135,17 @@ const ProductCard = ({
 
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-5">
 
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-normal leading-5xl text-text-secondary font-['Orelega_One']">
+            <h2 className="text-2xl sm:text-3xl font-semibold leading-tight text-text-secondary font-sans">
               {product.name}
             </h2>
 
-            <span className="text-lg sm:text-xl md:text-2xl font-normal leading-3xl text-primary-green-darker font-['Orelega_One'] whitespace-nowrap">
+            <span className="text-xl sm:text-2xl font-semibold text-primary-green-darker font-sans whitespace-nowrap">
               {product.price} руб
             </span>
 
           </div>
 
-          <p className="text-sm leading-md text-text-muted font-normal font-['Outfit']">
+          <p className="text-lg leading-7 text-text-muted font-normal font-sans">
             {product.description}
           </p>
 
@@ -158,13 +158,11 @@ const ProductCard = ({
 
             <span
               className="
-                text-base
-                leading-base
+                text-lg
                 uppercase
                 text-text-light
-                font-medium
-                font-['Outfit']
-                sm:pt-1
+                font-semibold
+                font-sans
               "
             >
               Количество

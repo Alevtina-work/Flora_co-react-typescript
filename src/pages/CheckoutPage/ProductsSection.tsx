@@ -11,7 +11,7 @@ const ProductsSection = ({ products, onUpdateQuantity, onRemoveProduct }: Produc
   return (
     <div className="w-full bg-card-background border border-card-border rounded-lg overflow-auto p-4 sm:p-5 md:p-6">
       <div className="flex justify-start items-center w-full mb-4 md:mb-4">
-        <h2 className="text-lg sm:text-xl font-semibold text-text-secondary font-['Outfit'] leading-4xl">
+        <h2 className="text-lg sm:text-2xl font-semibold text-text-secondary font-sans leading-4xl">
           Товары
         </h2>
       </div>
@@ -35,10 +35,10 @@ const ProductsSection = ({ products, onUpdateQuantity, onRemoveProduct }: Produc
 
             <div className="flex flex-col gap-3 sm:gap-4 w-full">
               <div className="flex justify-between items-center w-full">
-                <h3 className="text-sm sm:text-md font-semibold text-text-secondary font-['Outfit'] leading-lg">
+                <h3 className="text-sm sm:text-lg font-semibold text-text-secondary font-sans leading-lg">
                   {product.name}
                 </h3>
-                <span className="text-sm sm:text-md font-semibold text-text-secondary font-['Outfit'] leading-lg whitespace-nowrap ml-2">
+                <span className="text-sm sm:text-lg font-semibold text-text-secondary font-sans leading-lg whitespace-nowrap ml-2">
                   {product.price} руб
                 </span>
               </div>
@@ -56,7 +56,8 @@ const ProductsSection = ({ products, onUpdateQuantity, onRemoveProduct }: Produc
 
                 <button
                   onClick={() => onRemoveProduct(product.id)}
-                  className="text-sm font-medium text-text-red font-['Outfit'] leading-sm hover:underline transition-all duration-200 focus:outline-none"
+                  className="text-lg font-medium text-text-red font-sans
+                  leading-sm hover:underline transition-all duration-200 focus:outline-none"
                 >
                   Удалить
                 </button>

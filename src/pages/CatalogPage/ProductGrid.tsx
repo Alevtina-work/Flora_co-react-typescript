@@ -47,7 +47,7 @@ const ProductGrid = ({
           ))
         ) : (
           <div className="col-span-full flex justify-center py-20">
-            <p className="font-['Outfit'] text-lg text-text-muted">
+            <p className="font-sans text-lg text-text-muted">
               Ничего не найдено
             </p>
           </div>

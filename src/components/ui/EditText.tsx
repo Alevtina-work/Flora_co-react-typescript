@@ -39,7 +39,7 @@ const EditText = ({
   return (
     <div className="flex flex-col">
       {label && (
-        <label className="mb-2 text-sm font-medium text-text-secondary">
+        <label className="mb-2 text-md font-medium text-text-secondary">
           {label}
           {required && (
             <span className="ml-1 text-text-red">*</span>
@@ -57,7 +57,7 @@ const EditText = ({
         disabled={disabled}
         required={required}
         className={twMerge(
-          'rounded-sm border border-input-border bg-input-background px-4 py-3 text-left text-md font-normal leading-lg text-input-text transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-green disabled:cursor-not-allowed disabled:opacity-50',
+          'rounded-sm border border-input-border bg-input-background px-4 py-3 text-left text-lg font-normal leading-lg text-input-text transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-green disabled:cursor-not-allowed disabled:opacity-50',
           error && 'border-text-red focus:ring-text-red',
           isFocused && 'ring-2 ring-primary-green',
           className

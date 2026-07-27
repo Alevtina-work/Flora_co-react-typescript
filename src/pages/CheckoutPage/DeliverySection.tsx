@@ -22,9 +22,9 @@ const DeliverySection = ({ selectedDelivery, onSelectDelivery }: DeliverySection
   ];
 
   return (
-    <div className="w-full bg-card-background border border-card-border rounded-lg p-4 sm:p-5 md:p-6">
+    <div className="w-full bg-card-background border border-card-border rounded-lg 5 sm:p-5 md:p-6">
       <div className="flex justify-start items-center w-full mb-4 md:mb-4">
-        <h2 className="text-lg sm:text-xl font-semibold text-text-secondary font-['Outfit'] leading-4xl">
+        <h2 className="text-lg sm:text-2xl font-semibold text-text-secondary font-sans leading-4xl">
           Доставка
         </h2>
       </div>
@@ -34,15 +34,15 @@ const DeliverySection = ({ selectedDelivery, onSelectDelivery }: DeliverySection
           <button
             key={option.id}
             onClick={() => onSelectDelivery(option)}
-            className={`flex items-center justify-start w-full rounded-lg p-4 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green ${selectedDelivery?.id === option.id
-                ? 'bg-radio-background border border-radio-border-active' : 'bg-card-background border border-border-secondary hover:border-radio-border-active'
+            className={`flex items-center justify-start w-full rounded-lg p-5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green ${selectedDelivery?.id === option.id
+              ? 'bg-radio-background border border-radio-border-active' : 'bg-card-background border border-border-secondary hover:border-radio-border-active'
               }`}
           >
 
             <div className="flex-shrink-0 mr-3">
               <div
                 className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${selectedDelivery?.id === option.id
-                    ? 'border-radio-border-active bg-radio-border-active' : 'border-border-secondary bg-card-background'
+                  ? 'border-radio-border-active bg-radio-border-active' : 'border-border-secondary bg-card-background'
                   }`}
               >
                 {selectedDelivery?.id === option.id && (
@@ -52,10 +52,10 @@ const DeliverySection = ({ selectedDelivery, onSelectDelivery }: DeliverySection
             </div>
 
             <div className="flex flex-col justify-start items-start flex-1 px-2 sm:px-3">
-              <h3 className="text-sm font-medium text-text-secondary font-['Outfit'] leading-sm text-left">
+              <h3 className="text-lg font-medium text-text-secondary font-sans leading-sm text-left">
                 {option.title}
               </h3>
-              <p className="text-sm font-normal text-text-muted font-['Outfit'] leading-sm text-left mt-1">
+              <p className="text-md font-normal text-text-muted font-sans leading-sm text-left mt-1">
                 {option.description}
               </p>
             </div>

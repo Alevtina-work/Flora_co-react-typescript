@@ -13,7 +13,7 @@ const OrderSummarySection = ({ orderSummary, onPlaceOrder }: OrderSummarySection
     <div className="w-full sm:w-full md:w-[92%] bg-card-background border border-card-border rounded-lg p-4 sm:p-5 md:p-6 mx-auto">
 
       <div className="flex justify-start items-center w-full mb-2.5">
-        <h2 className="text-lg sm:text-xl font-semibold text-text-secondary font-['Poppins']">
+        <h2 className="text-lg sm:text-2xl font-semibold text-text-secondary font-sans">
           Оформление заказа
         </h2>
       </div>
@@ -23,19 +23,19 @@ const OrderSummarySection = ({ orderSummary, onPlaceOrder }: OrderSummarySection
         <div className="flex flex-col gap-3 w-full py-2">
 
           <div className="flex justify-between items-center w-full">
-            <span className="text-sm text-text-quaternary font-['Outfit']">
+            <span className="text-lg text-text-quaternary font-sans">
               Сумма заказа
             </span>
-            <span className="text-sm font-medium text-text-secondary font-['Outfit']">
+            <span className="text-lg font-medium text-text-secondary font-sans">
               {orderSummary?.subtotal} руб
             </span>
           </div>
 
           <div className="flex justify-between items-center w-full">
-            <span className="text-sm text-text-quaternary font-['Outfit']">
+            <span className="text-lg text-text-quaternary font-sans">
               Доставка
             </span>
-            <span className="text-sm font-medium text-text-secondary font-['Outfit']">
+            <span className="text-lg font-medium text-text-secondary font-sans">
               {orderSummary.delivery} руб
             </span>
           </div>
@@ -43,10 +43,10 @@ const OrderSummarySection = ({ orderSummary, onPlaceOrder }: OrderSummarySection
         </div>
 
         <div className="flex justify-between items-start w-full py-2">
-          <h3 className="text-base sm:text-lg font-semibold text-text-secondary font-['Outfit']">
+          <h3 className="text-base sm:text-2xl font-semibold text-text-secondary font-sans">
             Итого:
           </h3>
-          <span className="text-xl sm:text-3xl font-bold text-primary-green-darker font-['Outfit']">
+          <span className="text-xl sm:text-3xl font-bold text-primary-green-darker font-sans">
             {orderSummary.total} руб
           </span>
         </div>
@@ -65,9 +65,9 @@ const OrderSummarySection = ({ orderSummary, onPlaceOrder }: OrderSummarySection
               px-8
               py-3
 
-              text-md
-              font-medium
-              font-['Inter']
+              text-lg
+              font-semibold
+              font-sans
               leading-md
 
               shadow-[0px_1px_2px_#0000000c]
@@ -84,7 +84,7 @@ const OrderSummarySection = ({ orderSummary, onPlaceOrder }: OrderSummarySection
             size="medium"
           />
 
-          <p className="text-xs font-medium text-text-muted font-['Outfit'] text-center">
+          <p className="text-base font-medium text-text-muted font-sans text-center">
             {isCartEmpty
               ? 'Добавьте товары в корзину'
               : 'Свяжемся с вами для подтверждения заказа в течение 1 рабочего дня'}
