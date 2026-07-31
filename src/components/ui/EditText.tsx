@@ -39,7 +39,7 @@ const EditText = ({
   return (
     <div className="flex flex-col">
       {label && (
-        <label className="mb-2 text-md font-medium text-text-secondary">
+        <label className="mb-2 text-base font-medium text-text-secondary">
           {label}
           {required && (
             <span className="ml-1 text-text-red">*</span>

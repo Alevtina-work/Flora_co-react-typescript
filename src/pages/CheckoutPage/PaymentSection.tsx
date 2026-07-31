@@ -79,7 +79,7 @@ const PaymentSection = ({
                 </span>
 
                 {isCashOption && (
-                  <span className="text-lg text-text-muted mt-1">
+                  <span className="text-md text-text-muted mt-1 font-sans">
                     Только для самовывоза
                   </span>
                 )}
