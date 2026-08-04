@@ -8,6 +8,10 @@ Flora&Co is a responsive e-commerce application that allows users to browse plan
 
 This project is a complete TypeScript migration of the original JavaScript version of Flora&Co. The application was fully converted to TypeScript with strict typing while preserving all existing functionality and improving maintainability and type safety.
 
+## Live Demo
+
+[View Live Demo](https://flora-co-react-typescript-alevtina-work1.vercel.app)
+
 ## Previous Version
 
 This project is a refactored TypeScript version of the original JavaScript implementation.
